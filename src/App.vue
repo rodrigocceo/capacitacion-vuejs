@@ -1,13 +1,15 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import BlogPost from './components/BlogPost.vue'
 import ButtonCounter from './components/ButtonCounter.vue'
 import PaginatePost from './components/PaginatePost.vue'
+import LoadingSpinner from './components/LoadingSpinner.vue'
 
 const posts = ref([])
 const inicio = ref(0)
 const postXpage = 10
 const fin = ref(postXpage)
+const loading = ref(true)
 
 const next = () => {
   inicio.value = inicio.value + postXpage
@@ -25,13 +27,23 @@ const changeFavorite = (title) => {
   favorite.value = title
 }
 
-fetch('https://jsonplaceholder.typicode.com/posts/')
-  .then((response) => response.json())
-  .then((data) => (posts.value = data))
+const fetchData = async () => {
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts/')
+    posts.value = await res.json()
+  } catch (e) {
+    console.log(e)
+  } finally {
+    loading.value = false
+  }
+}
+
+fetchData()
 
 const maxLength = computed(() => posts.value.length)
 </script>
 <template>
+  <LoadingSpinner v-if="loading" />
   <div class="container">
     <h1>App</h1>
     <h2>Mis Post Favoritos: {{ favorite }}</h2>
