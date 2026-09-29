@@ -11,8 +11,8 @@ getData('https://pokeapi.co/api/v2/pokemon/')
   <p v-if="loading">Cargando informacion</p>
   <div class="alert alert-danger mt-2" v-if="error">{{ error }}</div>
   <div v-if="data">
-    <ul>
-      <li v-for="pokemon in data.results">
+    <ul class="list-group">
+      <li v-for="pokemon in data.results" class="list-group-item">
         <router-link :to="`/pokemons/${pokemon.name}`">{{ pokemon.name }}</router-link>
       </li>
     </ul>
