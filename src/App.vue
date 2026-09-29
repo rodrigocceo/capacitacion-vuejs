@@ -3,17 +3,17 @@ import { ref } from 'vue'
 import BlogPost from './components/BlogPost.vue'
 import ButtonCounter from './components/ButtonCounter.vue'
 
-const posts = ref([
-  { title: 'Post 1', id: 1, body: 'Descripcion 1' },
-  { title: 'Post 2', id: 2, body: 'Descripcion 2' },
-  { title: 'Post 3', id: 3 },
-])
+const posts = ref([])
 
 const favorite = ref('')
 
 const changeFavorite = (title) => {
   favorite.value = title
 }
+
+fetch('https://jsonplaceholder.typicode.com/posts/')
+  .then((response) => response.json())
+  .then((data) => (posts.value = data))
 </script>
 <template>
   <div class="container">
