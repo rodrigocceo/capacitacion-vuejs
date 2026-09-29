@@ -8,17 +8,24 @@ const posts = ref([
   { title: 'Post 2', id: 2, body: 'Descripcion 2' },
   { title: 'Post 3', id: 3 },
 ])
+
+const favorite = ref('')
+
+const changeFavorite = (title) => {
+  favorite.value = title
+}
 </script>
 <template>
   <div class="container">
     <h1>App</h1>
-    <ButtonCounter />
+    <h2>Mis Post Favoritos: {{ favorite }}</h2>
     <BlogPost
       v-for="post in posts"
       :key="post.id"
       :title="post.title"
       :id="post.id"
       :body="post.body"
+      @changeFavorite="changeFavorite"
     ></BlogPost>
   </div>
 </template>
