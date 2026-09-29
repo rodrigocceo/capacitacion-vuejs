@@ -1,6 +1,7 @@
 <script setup>
 import axios from 'axios'
 import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
 
 const pokemons = ref([])
 
@@ -18,6 +19,8 @@ getData()
 <template>
   <h1>Pokemons</h1>
   <ul>
-    <li v-for="pokemon in pokemons">{{ pokemon.name }}</li>
+    <li v-for="pokemon in pokemons">
+      <router-link :to="`/pokemons/${pokemon.name}`">{{ pokemon.name }}</router-link>
+    </li>
   </ul>
 </template>
