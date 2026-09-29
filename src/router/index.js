@@ -24,6 +24,11 @@ const router = createRouter({
       name: 'pokemon',
       component: () => import('../views/PokemonView.vue'),
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('../views/NotFoundView.vue'),
+    },
   ],
 })
 

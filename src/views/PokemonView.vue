@@ -19,13 +19,17 @@ const getData = async () => {
     pokemon.value = data
   } catch (error) {
     console.log(error)
+    pokemon.value = null
   }
 }
 
 getData()
 </script>
 <template>
-  <img :src="pokemon.sprites.front_default" alt="" />
-  <h1>Pokemon name: {{ $route.params.name }}</h1>
-  <button @click="back">Volver</button>
+  <div class="pokemon" v-if="pokemon">
+    <img :src="pokemon.sprites?.front_default" alt="" />
+    <h1>Pokemon name: {{ $route.params.name }}</h1>
+  </div>
+  <h1 v-else>No existe el Pokemon</h1>
+  <button @click="back" class="btn btn-outline-primary">Volver</button>
 </template>
