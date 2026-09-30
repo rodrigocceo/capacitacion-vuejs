@@ -8,6 +8,7 @@
         <RouterLink class="btn btn-outline-primary" to="/">Posts</RouterLink>
         <RouterLink class="btn btn-outline-primary" to="/about">About</RouterLink>
         <RouterLink class="btn btn-outline-primary" to="/pokemons">Pokemons</RouterLink>
+        <RouterLink class="btn btn-outline-primary" to="/favorites">Favorites</RouterLink>
       </div>
     </div>
   </nav>
