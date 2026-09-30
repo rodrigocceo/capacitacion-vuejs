@@ -12,9 +12,12 @@ export const useFavoriteStore = defineStore('favorites', () => {
     favorites.value = favorites.value.filter((item) => item.id !== id)
   }
 
+  const findPokemon = (name) => favorites.value.find((item) => item.name === name)
+
   return {
     favorites,
     addFavorites,
     remove,
+    findPokemon,
   }
 })

@@ -9,7 +9,7 @@ const route = useRoute()
 const router = useRouter()
 const useFavorites = useFavoriteStore()
 
-const { addFavorites } = useFavorites
+const { addFavorites, findPokemon } = useFavorites
 
 const back = () => {
   router.push('/pokemons')
@@ -25,7 +25,13 @@ getData(`https://pokeapi.co/api/v2/pokemon/${route.params.name}`)
   <div class="pokemon" v-if="data">
     <img :src="data.sprites?.front_default" alt="" />
     <h1>Pokemon name: {{ $route.params.name }}</h1>
-    <button class="btn btn-primary m-2" @click="addFavorites(data)">Agregar a favoritos</button>
+    <button
+      class="btn btn-primary m-2"
+      @click="addFavorites(data)"
+      :disabled="findPokemon(data.name)"
+    >
+      Agregar a favoritos
+    </button>
   </div>
   <button @click="back" class="btn btn-outline-primary">Volver</button>
 </template>
