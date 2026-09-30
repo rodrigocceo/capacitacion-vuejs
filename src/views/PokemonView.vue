@@ -3,9 +3,13 @@ import axios from 'axios'
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useGetData } from '@/composables/getData'
+import { useFavoriteStore } from '@/store/favorites'
 
 const route = useRoute()
 const router = useRouter()
+const useFavorites = useFavoriteStore()
+
+const { addFavorites, findPokemon } = useFavorites
 
 const back = () => {
   router.push('/pokemons')
@@ -21,6 +25,13 @@ getData(`https://pokeapi.co/api/v2/pokemon/${route.params.name}`)
   <div class="pokemon" v-if="data">
     <img :src="data.sprites?.front_default" alt="" />
     <h1>Pokemon name: {{ $route.params.name }}</h1>
+    <button
+      class="btn btn-primary m-2"
+      @click="addFavorites(data)"
+      :disabled="findPokemon(data.name)"
+    >
+      Agregar a favoritos
+    </button>
   </div>
   <button @click="back" class="btn btn-outline-primary">Volver</button>
 </template>
