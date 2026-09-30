@@ -17,6 +17,9 @@ const { remove } = useFavorites
         {{ pokemon.name }}
       </div>
       <div>
+        <router-link class="btn btn-sm btn-primary" :to="`pokemons/${pokemon.name}`"
+          >Mas información</router-link
+        >
         <button class="btn btn-sm btn-danger" @click="remove(pokemon.id)">Eliminar</button>
       </div>
     </li>
