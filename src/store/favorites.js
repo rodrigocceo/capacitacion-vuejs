@@ -8,8 +8,13 @@ export const useFavoriteStore = defineStore('favorites', () => {
     favorites.value.push(pokemon)
   }
 
+  const remove = (id) => {
+    favorites.value = favorites.value.filter((item) => item.id !== id)
+  }
+
   return {
     favorites,
     addFavorites,
+    remove,
   }
 })
